@@ -23,9 +23,10 @@ function changeSrc() {
 // for digital clock
 var hour = document.querySelector('.hour-number'),
   minute = document.querySelector('.minute-number'),
-  second = document.querySelector('.second-number');
+  second = document.querySelector('.second-number'),
+  meridiem = document.querySelector('.time-meridiem');
 
-setInterval(clock, 1000);
+setTimeout(clock, 1000);
 
 function clock() {
   var date = new Date(),
@@ -36,12 +37,14 @@ function clock() {
 
   if (h > 12) {
     zero(afterTwelve, hour);
+    meridiem.innerText = 'pm';
   } else {
-    hour.innerText = h;
+    zero(h, hour);
   }
 
   zero(m, minute);
   zero(s, second);
+  setTimeout(clock, 1000);
 }
 
 function zero(time, element) {
